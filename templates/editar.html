@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Editar {{ tipo }}</h2>
+<form method="post">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" value="{{ item.nombre }}" required>
+    <label for="precio">Precio:</label>
+    <input type="number" step="0.01" name="precio" id="precio" value="{{ item.precio }}" required>
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}

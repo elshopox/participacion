@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Lista de Platos</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+    </tr>
+    {% for plato in platos %}
+    <tr>
+        <td>{{ plato.id }}</td>
+        <td>{{ plato.nombre }}</td>
+        <td>{{ plato.precio }}</td>
+        <td>
+            <a href="{{ url_for('editar_plato', id=plato.id) }}">Editar</a>
+            <form action="{{ url_for('eliminar_plato', id=plato.id) }}" method="post" style="display:inline;">
+                <button type="submit">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Lista de Pedidos</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Plato</th>
+        <th>Mesa</th>
+        <th>Cantidad</th>
+        <th>Fecha</th>
+    </tr>
+    {% for pedido in pedidos %}
+    <tr>
+        <td>{{ pedido.id }}</td>
+        <td>{{ pedido.plato }}</td>
+        <td>{{ pedido.mesa }}</td>
+        <td>{{ pedido.cantidad }}</td>
+        <td>{{ pedido.fecha }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

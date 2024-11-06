@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Agregar {{ tipo }}</h2>
+<form method="post">
+    {% if tipo == 'Plato' %}
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" required>
+    <label for="precio">Precio:</label>
+    <input type="number" step="0.01" name="precio" id="precio" required>
+    {% elif tipo == 'Pedido' %}
+    <label for="plato_id">Plato:</label>
+    <select name="plato_id" id="plato_id">
+        {% for plato in platos %}
+        <option value="{{ plato.id }}">{{ plato.nombre }}</option>
+        {% endfor %}
+    </select>
+    <label for="mesa_id">Mesa:</label>
+    <select name="mesa_id" id="mesa_id">
+        {% for mesa in mesas %}
+        <option value="{{ mesa.id }}">{{ mesa.numero }}</option>
+        {% endfor %}
+    </select>
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" name="cantidad" id="cantidad" required>
+    <label for="fecha">Fecha:</label>
+    <input type="datetime-local" name="fecha" id="fecha" required>
+    {% endif %}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}
